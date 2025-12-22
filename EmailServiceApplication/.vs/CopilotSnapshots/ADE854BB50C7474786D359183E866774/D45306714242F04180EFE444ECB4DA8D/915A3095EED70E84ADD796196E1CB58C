@@ -1,0 +1,19 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+/* JWT configuration used by authentication/token generation */
+{
+  "Jwt": {
+    "Key": "ReplaceThisWithASecureLongRandomKey123!",
+    "Issuer": "EmailServiceApp",
+    "Audience": "EmailServiceAppUsers",
+    "ExpiresMinutes": 60
+  }
+}

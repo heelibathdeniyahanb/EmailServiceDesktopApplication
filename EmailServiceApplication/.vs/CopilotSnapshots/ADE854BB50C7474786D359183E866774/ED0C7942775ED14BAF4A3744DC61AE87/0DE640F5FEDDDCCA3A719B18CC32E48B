@@ -1,0 +1,74 @@
+﻿using EmailServiceApplication.Data;
+using EmailServiceApplication.Models;
+using MailKit.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MimeKit;
+using MailKit.Net.Smtp;
+
+namespace EmailServiceApplication.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmailController : ControllerBase
+    {
+
+        private readonly DatabaseContext _context;
+
+        public EmailController(DatabaseContext context)
+        {
+            _context = context;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendEmail([FromForm] string subject, [FromForm] string body, [FromForm] string[] recipients, [FromForm] List<IFormFile> attachments)
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("crmitfac@gmail.com"));
+
+            foreach (var recipient in recipients)
+            {
+                email.To.Add(MailboxAddress.Parse(recipient));
+            }
+
+            email.Subject = subject;
+            var builder = new BodyBuilder { HtmlBody = body };
+            var emailModel = new Email
+            {
+                Sender = "crmitfac@gmail.com",
+                Recipients = string.Join(",", recipients),
+                Subject = subject,
+                Body = body,
+                SentDateTime = DateTime.Now,
+                Attachments = new List<Attachment>()
+            };
+
+            foreach (var attachment in attachments)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await attachment.CopyToAsync(ms);
+                    var fileBytes = ms.ToArray();
+                    builder.Attachments.Add(attachment.FileName, fileBytes);
+                    emailModel.Attachments.Add(new Attachment
+                    {
+                        FileName = attachment.FileName,
+                        Content = fileBytes
+                    });
+                }
+            }
+
+            email.Body = builder.ToMessageBody();
+
+            using var client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            client.Authenticate("crmitfac@gmail.com", "vswp acpu deyy vrhx"); // Consider using secure storage for credentials
+            _context.Emails.Add(emailModel);
+            await _context.SaveChangesAsync();
+            client.Send(email);
+            client.Disconnect(true);
+
+            return Ok();
+        }
+    }
+}

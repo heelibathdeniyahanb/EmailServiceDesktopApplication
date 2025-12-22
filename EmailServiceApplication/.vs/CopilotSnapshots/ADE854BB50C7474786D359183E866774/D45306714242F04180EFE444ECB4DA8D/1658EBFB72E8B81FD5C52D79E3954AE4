@@ -1,0 +1,6 @@
+﻿namespace EmailServiceApplication.Services
+{
+    public class UserService
+    {
+    }
+}

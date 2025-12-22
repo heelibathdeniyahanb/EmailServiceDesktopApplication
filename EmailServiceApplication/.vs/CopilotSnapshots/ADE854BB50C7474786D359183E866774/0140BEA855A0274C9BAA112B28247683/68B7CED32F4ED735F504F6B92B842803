@@ -1,0 +1,20 @@
+﻿namespace EmailServiceApplication.Models
+{
+    public class User
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }   // login
+        public string Email { get; set; }      // internal email address - optional
+        public string PasswordHash { get; set; }
+
+        public string FullName { get; set; }
+        public string Department { get; set; } // HR / IT / Finance, etc.
+
+        public string Role { get; set; } // Admin, User
+        public bool IsActive { get; set; }
+
+        public List<Email> SentEmails { get; set; }
+        public List<Email> ReceivedEmails { get; set; }
+        public List<DepartmentGroup> DepartmentGroups { get; set; }
+    }
+}
