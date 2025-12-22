@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D1DfEp2rtJY=",
+  "dgSpecHash": "2LXu7TDcoR4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
+  "projectFilePath": "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAPMART\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\LAPMART\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
