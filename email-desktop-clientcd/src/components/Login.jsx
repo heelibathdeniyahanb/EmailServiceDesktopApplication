@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,8 +14,8 @@ const Login = () => {
 
     try {
       // Replace with your backend endpoint
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
+      const response = await axios.post("http://localhost:5294/api/User/login", {
+        username,
         password,
       });
 
@@ -39,9 +39,9 @@ const Login = () => {
           <div>
             <label className="block text-black font-medium mb-1">Email</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-black"
               required
             />

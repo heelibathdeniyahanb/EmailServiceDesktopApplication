@@ -33,7 +33,7 @@ builder.Services.AddAuthentication(options =>
 })
     .AddJwtBearer(options =>
     {
-        options.RequireHttpsMetadata = true;
+        options.RequireHttpsMetadata = false;
         options.SaveToken = true;
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
@@ -47,8 +47,27 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+
+
 // Register services
 builder.Services.AddScoped<EmailServiceApplication.Services.UserService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy
+                .WithOrigins(
+                    "http://localhost:3000",   // React (CRA)
+                    "http://localhost:5173"    // Vite
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
+
 
 var app = builder.Build();
 
@@ -58,6 +77,7 @@ app.UseSwaggerUI();
 
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();

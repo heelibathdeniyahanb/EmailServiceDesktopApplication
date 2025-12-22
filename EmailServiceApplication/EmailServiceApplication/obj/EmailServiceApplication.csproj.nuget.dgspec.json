@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj": {}
+    "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj": {
+    "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
+        "projectUniqueName": "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
         "projectName": "EmailServiceApplication",
-        "projectPath": "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
+        "projectPath": "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\EmailServiceApplication.csproj",
         "packagesPath": "C:\\Users\\LAPMART\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAPMART\\EmailService\\EmailServiceApplication\\EmailServiceApplication\\obj\\",
+        "outputPath": "C:\\Users\\LAPMART\\Desktop\\EmailService\\EmailServiceDesktopApplication\\EmailServiceApplication\\EmailServiceApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
