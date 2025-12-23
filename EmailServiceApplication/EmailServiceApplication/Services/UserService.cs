@@ -65,13 +65,18 @@ namespace EmailServiceApplication.Services
             return true;
         }
 
-        public async Task<string> LoginAsync(string username, string password)
+        public async Task<(string Token, User User)?> LoginAsync(string username, string password)
         {
             var user = await _db.Users.SingleOrDefaultAsync(u => u.Username == username);
             if (user == null) return null;
+
             if (!VerifyPassword(user.PasswordHash, password)) return null;
-            return GenerateJwtToken(user);
+
+            var token = GenerateJwtToken(user);
+
+            return (token, user);
         }
+
 
         // Password hashing using PBKDF2
         private (byte[] hash, byte[] salt) HashPassword(string password)
