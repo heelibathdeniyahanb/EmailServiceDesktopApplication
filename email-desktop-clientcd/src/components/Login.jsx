@@ -1,32 +1,39 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  e.preventDefault();
+  setError("");
+  setLoading(true);
 
-    try {
-      // Replace with your backend endpoint
-      const response = await axios.post("http://localhost:5294/api/User/login", {
-        username,
-        password,
-      });
+  try {
+    const response = await axios.post(
+      "http://localhost:5294/api/User/login",
+      { username, password }
+    );
 
-      console.log("Login successful:", response.data);
-      // Handle login success (save token, redirect, etc.)
-    } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const { token, user } = response.data;
+
+    // TEMP storage (will upgrade)
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    navigate("/inbox");
+  } catch (err) {
+    setError(err.response?.data?.message || "Login failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
    <div className="min-h-screen flex items-center justify-center bg-black">

@@ -39,10 +39,28 @@ namespace EmailServiceApplication.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest req)
         {
-            var token = await _userService.LoginAsync(req.Username, req.Password);
-            if (token == null) return Unauthorized();
-            return Ok(new { token });
+            var result = await _userService.LoginAsync(req.Username, req.Password);
+
+            if (result == null)
+                return Unauthorized(new { message = "Invalid username or password" });
+
+            var (token, user) = result.Value;
+
+            return Ok(new
+            {
+                token,
+                user = new
+                {
+                    user.Id,
+                    user.Username,
+                    user.FullName,
+                    user.Email,
+                    user.Role,
+                    user.Department
+                }
+            });
         }
+
 
         [HttpGet]
         [Route("{id:int}")]
